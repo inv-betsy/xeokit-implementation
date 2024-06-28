@@ -1,0 +1,53 @@
+# Node.js files
+node_modules/
+
+# Logs
+logs/
+*.log
+
+# Dependency directories
+pids/
+logs/
+*.pid
+*.seed
+*.pid.lock
+
+# Directory for storing cached files
+*.pnp.*
+.pnp/
+
+# Directory for storing test results
+coverage/
+
+# nyc test coverage
+.nyc_output/
+
+# Compiled binary addons
+/build/Release
+
+# Dependency directories from Yarn v2
+.yarn/unplugged/
+.yarn/cache/
+.yarn/unplugged/
+
+# TypeScript
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# vscode files
+.vscode/
+
+# IDE settings
+.idea/
+*.code-workspace
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
