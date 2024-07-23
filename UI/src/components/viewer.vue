@@ -36,7 +36,7 @@ const loadSceneModel = () => {
   console.log("Loading scene model",xktURL.value)
   if (!viewer.value || !xktURL.value) return; // Exit if viewer or xktURL is not ready
 
-  const xktLoader = new XKTLoaderPlugin(viewer.value);
+  const xktLoader = new XKTLoaderPlugin(viewer.value as Viewer);
 
   // Unload previous scene model if exists
   if (sceneModel) {
@@ -68,7 +68,7 @@ watch(
   () => props.fileUrl,
   (newQuery) => {
     console.log(`Search Query: ${newQuery}`);
-    xktURL.value = newQuery;
+    xktURL.value = newQuery || '';
     loadSceneModel(); // Call loadSceneModel whenever fileUrl changes
   }
 );
@@ -98,13 +98,13 @@ onMounted(() => {
   ];
 
   // Initialize NavCubePlugin
-  new NavCubePlugin(viewer.value, {
+  new NavCubePlugin(viewer.value as Viewer, {
     canvasElement: cubeCanvas.value,
     visible: true,
   });
 
   // Initialize TreeViewPlugin
-  new TreeViewPlugin(viewer.value, {
+  new TreeViewPlugin(viewer.value as Viewer, {
     containerElement: treeContainer.value,
     hierarchy: "containment",
     autoExpandDepth: 3,
