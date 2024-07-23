@@ -2,16 +2,8 @@
   <v-app>
     <v-app-bar app color="#008c85" dark class="px-4 py-2">
       <v-app-bar-title class="ml-4">Vue, TypeScript and Xeokit</v-app-bar-title>
-      <v-file-input
-        v-model="tempQuery"
-        label="Upload an XKT file"
-        accept=".xkt"
-        single-line
-        hide-details
-        class="mx-4"
-        dense
-        @change="handleFileUpload"
-      ></v-file-input>
+      <v-file-input v-model="tempQuery" label="Upload an XKT file" accept=".xkt" single-line hide-details class="mx-4"
+        dense @change="handleFileUpload"></v-file-input>
     </v-app-bar>
     <Viewer :fileUrl="fileUrl" />
   </v-app>
@@ -22,7 +14,7 @@ import Viewer from "@/components/viewer.vue";
 import { ref } from "vue";
 import axios from "axios";
 
-const tempQuery = ref("");
+const tempQuery = ref<File | null>(null);
 const fileUrl = ref<string | null>(null);
 
 const handleFileUpload = async (event: Event) => {
