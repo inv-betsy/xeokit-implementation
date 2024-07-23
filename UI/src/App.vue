@@ -13,12 +13,18 @@
 import Viewer from "@/components/viewer.vue";
 import { ref } from "vue";
 import axios from "axios";
+import { useToast } from "vue-toastification";
+
 const publicEnvVar = import.meta.env.VITE_MY_ENV_VARIABLE;
-console.log(publicEnvVar)
+const toast = useToast();
+
+
+
 const tempQuery = ref<File | null>(null);
 const fileUrl = ref<string | null>(null);
 
 const handleFileUpload = async (event: Event) => {
+
   const input = event.target as HTMLInputElement;
   if (input.files && input.files.length > 0) {
     const file = input.files[0];
@@ -38,7 +44,14 @@ const handleFileUpload = async (event: Event) => {
 
       fileUrl.value = response.data.filePath; // Assuming filePath is returned from backend
     } catch (error) {
-      console.error("Error uploading file:", error);
+      // console.error("Error uploading file:", error);
+      let { response }: any = error;
+      let err_msg = response.data.error || "Error";
+
+      toast.error(err_msg, {
+        timeout: 2000
+      });
+
     }
   }
 };
