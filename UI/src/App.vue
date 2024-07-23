@@ -13,7 +13,8 @@
 import Viewer from "@/components/viewer.vue";
 import { ref } from "vue";
 import axios from "axios";
-
+const publicEnvVar = import.meta.env.VITE_MY_ENV_VARIABLE;
+console.log(publicEnvVar)
 const tempQuery = ref<File | null>(null);
 const fileUrl = ref<string | null>(null);
 
@@ -26,7 +27,7 @@ const handleFileUpload = async (event: Event) => {
       formData.append("file", file);
 
       const response = await axios.post<{ filePath: string }>(
-        "http://localhost:5000/api/upload",
+        `${publicEnvVar}/upload.php/`,
         formData,
         {
           headers: {
